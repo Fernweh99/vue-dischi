@@ -11,8 +11,9 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../assets/scss/vars";
   header {
-    background-color: #2D3A46;
+    background-color: $primary_color;
     height: 70px;
   }
 </style>
