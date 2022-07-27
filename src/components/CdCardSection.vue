@@ -2,7 +2,7 @@
   <div class="section-cd-card-">
     <div class="container">
       <div class="row g-5 row-cols-5">
-        <div v-for="cd in cds" class="col" 
+        <div v-for="cd in getFilteredArray" class="col" 
         :key="cd.poster"
         >
           <SingleCdCard 
@@ -23,10 +23,24 @@ export default {
   name: "CdCardSection",
   props: {
     cds: Array,
+    valueOption: String,
+    labelKey: String,
   },
   components: {
     SingleCdCard,
   },
+  computed: {
+    getFilteredArray() {
+      return this.cds.filter((cd)=> {
+        const currentTextKey = cd[this.labelKey];
+        if (!this.valueOption) return true;
+        else if(currentTextKey == this.valueOption) {
+          return true;
+        }
+        else return false
+      })
+    },
+  }
 }
 </script>
 

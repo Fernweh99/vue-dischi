@@ -1,8 +1,8 @@
 <template>
   <div>
-    <BaseHeader :cds="cds"/>
+    <BaseHeader @change-value="setDataForSearch" :cds="cds"/>
     <main>
-      <CdCardSection :cds="cds"/>
+      <CdCardSection :cds="cds" :labelKey="key" :valueOption="valueOption"/>
     </main>
   </div>
 </template>
@@ -22,6 +22,8 @@ export default {
     return {
       url: "https://flynn.boolean.careers/exercises/api/array/music",
       cds: [],
+      valueOption: "",
+      key: "",
     }
   },
   methods: {
@@ -29,6 +31,10 @@ export default {
       axios.get(this.url).then(res => {
         this.cds = res.data.response
       })
+    },
+    setDataForSearch(value, key) {
+      this.valueOption = value;
+      this.key = key;
     }
   },
   created() {

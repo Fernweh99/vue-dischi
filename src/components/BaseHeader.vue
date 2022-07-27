@@ -2,7 +2,7 @@
   <header>
     <div class="container h-100 d-flex align-items-center justify-content-between">
       <div class="logo text-white">Logo</div>
-      <SelectComponent :cds="cds" label-key="genre"/>
+      <SelectComponent @change-value="emitValue" :cds="cds" label-key="genre"/>
     </div>
   </header>
 </template>
@@ -21,8 +21,14 @@ export default {
   data() {
     return {
       valueOption: "",
+      key: "",
     }
   },
+  methods: {
+    emitValue(value, key) {
+      this.$emit("change-value", value, key)
+    }
+  }
 }
 </script>
 

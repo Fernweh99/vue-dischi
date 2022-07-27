@@ -1,5 +1,5 @@
 <template>
-  <select v-model="valueOption">
+  <select @change="emitValue" v-model="valueOption">
     <option value="">Select {{ labelKey }}</option>
     <option v-for="i in getUniqueNameKey" :key="i" :value="i">{{ i }}</option>
   </select>
@@ -17,17 +17,12 @@ export default {
       valueOption : "",
     }
   },
+  methods: {
+    emitValue() {
+      this.$emit("change-value", this.valueOption, this.labelKey)
+    }
+  },
   computed: {
-    getFilteredArray() {
-      return this.cds.filter((cd)=> {
-        const currentTextKey = cd[this.labelKey];
-        if (!this.valueOption) return true;
-        else if(currentTextKey == this.valueOption) {
-          return true;
-        }
-        else return false
-      })
-    },
     getNameKey() {
       return this.cds.map((cd)=> {
         return cd[this.labelKey];
