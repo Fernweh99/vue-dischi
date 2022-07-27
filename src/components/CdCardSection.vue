@@ -18,30 +18,15 @@
 </template>
 
 <script>
-import axios from "axios";
 import SingleCdCard from "./SingleCdCard.vue"
 export default {
   name: "CdCardSection",
+  props: {
+    cds: Array,
+  },
   components: {
     SingleCdCard,
   },
-  data() {
-    return {
-      url: "https://flynn.boolean.careers/exercises/api/array/music",
-      cds: [],
-    }
-  },
-  methods: {
-    getCd () {
-      axios.get(this.url).then(res => {
-        this.cds = res.data.response
-      })
-    }
-  },
-  mounted() {
-    this.getCd();
-  }
-
 }
 </script>
 
