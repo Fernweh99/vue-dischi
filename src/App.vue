@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseHeader/>
+    <BaseHeader :cds="cds"/>
     <main>
       <CdCardSection :cds="cds"/>
     </main>
